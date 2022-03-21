@@ -1,0 +1,15 @@
+@import '@core/scss/angular/libs/datatables.component.scss';
+@import '@core/scss/base/pages/app-user.scss';
+@import '@core/scss/angular/libs/select.component.scss';
+
+@media screen and (max-width: 768px){
+    .filter{
+        margin-top: 20px;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .pl{
+        padding-left: 0px;
+    }
+}

@@ -1,0 +1,40 @@
+@import '@core/scss/angular/libs/flatpickr.component.scss';
+@import '@core/scss/angular/libs/select.component.scss';
+@import '@core/scss/base/pages/app-user.scss';
+
+
+.media{
+    img{
+        margin : 0px 10px;
+    }
+    button{
+        margin : 10px 0px;
+    }
+}
+
+.productImg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: #ffffff;
+}
+
+@media screen and (max-width: 768px){
+    .media{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        img{
+            margin : 10px 0px;
+        }
+        button{
+            margin : 0px 10px;
+        }
+    }
+    .productImg{
+        flex-direction: row;
+    }
+}

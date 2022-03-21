@@ -1,0 +1,110 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <!-- User List -->
+    <section class="users-list-wrapper">
+      <div class="card">
+        <div class="row">
+          <div class="filter col-md-6 col-12 d-flex justify-content-start justify-content-md-end align-items-center">
+          <div class="row pr-1 pb-1 pb-md-0 align-items-center w-100">
+            <div class="pl col-10 col-md-6 pr-0">
+              <label class="d-flex align-items-center mb-0 ml-1 ml-md-0"
+                ><input
+                  [(ngModel)]="searchValue"
+                  name="searchValue"
+                  type="search"
+                  class="form-control"
+                  placeholder="Search..."
+                  (keyup)="filterUpdate($event)"
+              /></label>
+            </div>
+            <div class="col-10 col-md-6 mt-2 ml-1 ml-md-0 mt-md-0">
+              <fieldset class="form-group mb-0">
+                <ng-select
+                  [items]="selectAvailability"
+                  [(ngModel)]="selectedAvailability"
+                  bindLabel="name"
+                  placeholder="Select Availability"
+                  (change)="filterByStatus($event)"
+                ></ng-select>
+              </fieldset>
+            </div>
+          </div>
+          </div>
+          <div class="col-md-6 col-lg-4 col-12 d-flex justify-content-start justify-content-md-end align-items-center offset-lg-2">
+            <div class="d-flex justify-content-between align-items-center m-1">
+              <label class="d-flex align-items-center">Show entries
+                <select class="form-control mx-25" [(ngModel)]="selectedOption">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </label>
+              <button class="btn btn-primary ml-1" rippleEffect (click)="createUser()">
+                <i data-feather="plus" class="d-sm-none d-inline-block mr-0 mr-sm-1"></i
+                ><span class="d-none d-sm-inline-block">Add New User</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <ngx-datatable
+          [rows]="rows"
+          [rowHeight]="50"
+          class="bootstrap core-bootstrap"
+          [limit]="selectedOption"
+          [columnMode]="ColumnMode.force"
+          [headerHeight]="50"
+          [footerHeight]="50"
+          [scrollbarH]="true"
+        >
+          <ngx-datatable-column name="ID" prop="id" [width]="100"></ngx-datatable-column>
+          <ngx-datatable-column name="User Name" prop="fullName" [width]="150">
+            <ng-template let-row="row" let-name="value" ngx-datatable-cell-template>
+              <div class="d-flex align-items-center">
+                <div class="cell-line-height">
+                  <a routerLink="/user/edit/{{ row.id }}" class="font-medium-1 d-block"
+                    ><span class="font-weight-bold">{{ name }}</span></a
+                  >
+                </div>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Address" prop="address" [width]="200"></ngx-datatable-column>
+          <ngx-datatable-column name="City" prop="city" [width]="100">
+            <ng-template let-city="value" ngx-datatable-cell-template>
+              <div
+                class="badge badge-pill"
+                [ngClass]="{
+                  'badge-light-info': city == 'RIYADH',
+                  'badge-light-secondary': city == 'JEDDAH',
+                  'badge-light-primary': city == 'DAMMAM'
+                }"
+              >
+                {{ city }}
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Email" prop="email" [width]="150"></ngx-datatable-column>
+          <ngx-datatable-column name="Contact" prop="contact" [width]="100"></ngx-datatable-column>
+          <ngx-datatable-column name="Actions" [width]="40" [sortable]="false">
+            <ng-template ngx-datatable-cell-template let-row="row">
+              <div class="d-flex align-items-center col-actions">
+                <a class="mr-1" (click)="viewUser(row.id)" container="body" placement="top" ngbTooltip="View"
+                  ><i size="18" data-feather="eye" class="text-primary"></i
+                ></a>
+                <a class="mr-1" (click)="editUser(row.id)" container="body" placement="top" ngbTooltip="Edit"
+                  ><i size="18" data-feather="edit" class="text-primary"></i
+                ></a>
+                <a class="mr-1" (click)="deleteUser(row.fullName)" container="body" placement="top" ngbTooltip="Delete"
+                  ><i size="18" data-feather="trash-2" class="text-primary"></i
+                ></a>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </section>
+    <!--/ User List -->
+  </div>
+</div>

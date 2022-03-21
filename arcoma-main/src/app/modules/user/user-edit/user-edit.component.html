@@ -1,0 +1,198 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- <h2 class="mb-2">User</h2> -->
+    <section class="app-user-edit">
+      <div class="card">
+        <div class="card-body">
+          <div>
+            <h4 (click)="back()" class="text-primary font-weight-bolder pointer d-inline"><i data-feather="arrow-left" [class]="'text-primary'" [size]="22"></i> Back </h4>
+            <h2 class="my-1"><strong>{{ headText }}</strong></h2>
+          </div>
+          <form [formGroup]="form" (ngSubmit)= "onSubmit()">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="fullName">User Name
+                    <span class="required-asterisk" [ngStyle]= "{'color':'red','font-size': '20px'}">*</span>
+                  </label>
+                  <input type="text" class="form-control" placeholder="Name" required
+                    [(ngModel)]="userData.fullName" formControlName="fullName">
+                  <div *ngIf="form.get('fullName').hasError('required') && form.get('fullName').touched"
+                    class="form-control-feedback" [ngStyle]= "{'color':'red'}">Enter the User Name</div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="address">Address
+                    <span class="required-asterisk" [ngStyle]= "{'color':'red','font-size': '20px'}">*</span>
+                  </label>
+                  <input type="text" class="form-control" placeholder="Address"
+                    [(ngModel)]="userData.address" formControlName="address" [readonly]="readMode">
+                  <div *ngIf="form.get('address').hasError('required') && form.get('address').touched"
+                    class="form-control-feedback" [ngStyle]= "{'color':'red'}">Enter User Address</div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                <label for="City">City
+                  <span class="required-asterisk" [ngStyle]= "{'color':'red','font-size': '20px'}">*</span>
+                </label>
+                  <select class="form-control" [(ngModel)]="userData.city" formControlName="city" id="city">
+                    <option value="city"> </option>
+                    <option value="city">RIYADH</option>
+                    <option value="city">JEDDAH</option>
+                    <option value="city">DAMMAM</option>
+                  </select>
+                <div *ngIf="form.get('city').hasError('required') && form.get('city').touched"
+                  class="form-control-feedback" [ngStyle]= "{'color':'red'}">Select The City Name</div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                <label for="email">Email
+                  <span class="required-asterisk" [ngStyle]= "{'color':'red','font-size': '20px'}">*</span>
+                </label>
+                <input type="email" class="form-control" placeholder="email"
+                  [(ngModel)]="userData.email" formControlName="email" [readonly]="readMode">
+                <div *ngIf="form.get('email').hasError('required') && form.get('email').touched"
+                  class="form-control-feedback" [ngStyle]= "{'color':'red'}">Enter the Email</div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                <label for="contact">Contact Number
+                  <span class="required-asterisk" [ngStyle]= "{'color':'red','font-size': '20px'}">*</span>
+                </label>
+                <input type="number" class="form-control" placeholder="Contact Number"
+                  [(ngModel)]="userData.contact" formControlName="contact" [readonly]="readMode">
+                <div *ngIf="form.get('contact').hasError('required') && form.get('contact').touched"
+                  class="form-control-feedback" [ngStyle]= "{'color':'red'}">Enter the Contact Number</div>
+                </div>
+              </div>
+
+              <!-- <div class="col-md-4">
+                <div class="form-group">
+                <label for="company">Company Name</label>
+                <input type="text" class="form-control" placeholder="Company" [readonly]="readMode">
+                <div *ngIf="form.get('company').hasError('required') && form.get('company').touched"
+                  class="form-control-feedback">Enter the Company Name</div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                <label for="modelNumber">Model Number
+                  <span class="required-asterisk" [ngStyle]= "{'color':'red','font-size': '20px'}">*</span>
+                </label>
+                <input type="text" class="form-control" placeholder="Model Number"
+                  [(ngModel)]="productData.modelNumber" formControlName="modelNumber" [readonly]="readMode">
+                <div *ngIf="form.get('modelNumber').hasError('required') && form.get('modelNumber').touched"
+                  class="form-control-feedback" [ngStyle]= "{'color':'red'}">Enter the Model Number</div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                <label for="warranty">Warranty</label>
+                <input type="text" class="form-control" placeholder="Warranty" [readonly]="readMode">
+                <div *ngIf="form.get('warranty').hasError('required') && form.get('warranty').touched"
+                  class="form-control-feedback">Enter the Warranty</div>
+                </div>
+              </div> -->
+
+
+              <!-- <div class="col-md-8">
+                <div class="form-group">
+                <label for="editor">Description</label>
+                <ckeditor [editor]="Editor" [data]="data"></ckeditor> -->
+                <!-- Quill Editor is Vuexy Inbuilt That Support Dark Mode, Use CK or Quill-->
+                <!-- <quill-editor [(ngModel)]="productData.desc" [modules]="{ syntax: true, toolbar: [['code-block']] }"
+                  ><div quill-editor-toolbar>
+                    <span class="ql-formats">
+                      <button class="ql-bold" [title]="'Bold'"></button>
+                      <button class="ql-italic" [title]="'italic'"></button>
+                      <button class="ql-underline" [title]="'underline'"></button>
+                    </span>
+                    <span class="ql-formats">
+                      <select class="ql-align" [title]="'Alignment'">
+                        <option selected></option>
+                        <option value="center"></option>
+                        <option value="right"></option>
+                        <option value="justify"></option>
+                      </select>
+                    </span>
+                    <span class="ql-formats">
+                      <button class="ql-list" value="ordered" type="button"></button>
+                    </span>
+                    <span class="ql-formats">
+                      <button class="ql-link" value="ordered" type="button"></button>
+                      <button class="ql-image" value="ordered" type="button"></button>
+                      <button class="ql-video" value="ordered" type="button"></button>
+                    </span>
+                    <span class="ql-formats">
+                      <button class="ql-formula" value="ordered" type="button"></button>
+                      <button class="ql-code-block" value="ordered" type="button"></button>
+                    </span>
+                    <span class="ql-formats">
+                      <button class="ql-clean" value="ordered" type="button"></button>
+                    </span>
+                  </div>
+                </quill-editor> -->
+                <!-- </div>
+              </div> -->
+
+              <div class="col-md-12">
+                <label for="userImage">User Images</label>
+                <div class="form-group media-body mt-50">
+                  <div class="col-12 d-flex mt-1 px-0" *ngIf="!readMode">
+                    <label class="btn btn-primary mr-75 mb-0" for="pictures">
+                      <span class="d-none d-sm-block">Add Images</span>
+                      <input
+                        class="form-control"
+                        type="file"
+                        id="pictures"
+                        hidden
+                        accept="image/png, image/jpeg, image/jpg"
+                        (change)="onSelectFile($event)"
+                        multiple
+                      />
+                      <span class="d-block d-sm-none">
+                        <i class="mr-0" data-feather="edit"></i>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-12 media my-2 ml-2">
+                <div class="userImg" *ngFor='let url of urls; let i = index;'>
+                  <img [src]="url" height="200" width="200">
+                  <button class="btn btn-icon btn-outline-danger" rippleEffect (click)="removeImage(i)">
+                    <i class="mr-0" data-feather="trash-2"></i>
+                  </button>
+                </div>
+              </div>
+              
+              <div class="col-12 d-flex flex-sm-row flex-column mt-2" *ngIf="!readMode">
+                <button type="button" [disabled]="form.invalid" class="btn btn-primary mb-1 mb-sm-0 mr-0 mr-sm-1"
+                  (click)="onSubmit()" rippleEffect>
+                  Save Changes
+                </button>
+
+                <button (click)="resetForm()" class="btn btn-outline-secondary" rippleEffect>
+                  Reset
+                </button>
+
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
